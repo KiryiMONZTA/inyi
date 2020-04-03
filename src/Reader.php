@@ -10,7 +10,7 @@ class Reader extends \Exception
     const ERRORMSG_FILEISBROKEN = 'INI READER ERROR: File "%s" is broken!';
     const ERRORMSG_KEYNOTFOUND = 'INI READER ERROR: Key "%s" is not set in file "%s"!';
     
-    const ROOTDIR = __DIR__ . '/../../../';
+    const ROOTDIR = __DIR__ . '/../../../../';
     
     private string $filepath = '';
     private array $ini = [];
