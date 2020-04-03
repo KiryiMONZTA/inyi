@@ -8,7 +8,7 @@ class Reader extends \Exception
 {
     const ERRORMSG_FILEDOESNOTEXIST = 'INI READER ERROR: File "%s" does not exist!';
     const ERRORMSG_FILEISBROKEN = 'INI READER ERROR: File "%s" is broken!';
-    const ERRORMSG_VALUENOTFOUND = 'INI READER ERROR: Value "%s" is not set in file "%s"!';
+    const ERRORMSG_KEYNOTFOUND = 'INI READER ERROR: Key "%s" is not set in file "%s"!';
     
     const ROOTDIR = __DIR__ . '/../../../';
     
@@ -29,7 +29,7 @@ class Reader extends \Exception
         if (null !== $value = $this->getValue($key)) {
             return $value;
         } else {
-            throw new \Exception(sprintf($this::ERRORMSG_VALUENOTFOUND, $key, $this->filepath));
+            throw new \Exception(sprintf($this::ERRORMSG_KEYNOTFOUND, $key, $this->filepath));
         }
     }
     
