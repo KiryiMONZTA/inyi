@@ -37,7 +37,7 @@ Returns the value corresponding to the key. Since it is possible to define strin
 user = kiryi
 password = qwe123
 ```
-*src/ConfigController.php*
+*src/Config.php*
 ```php
 $inyi = new \Kiryi\Inyi\Reader('configuration/config.ini');
 $value = $inyi->get('database::user');
