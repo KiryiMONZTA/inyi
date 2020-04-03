@@ -28,7 +28,7 @@ get(string $key)
 The key to read the value from the INI file. Key levels are seperated by double colons.
 
 ### Return Values
-Returns the value corresponding to the key. Since it is possible to define strings as well as arrays in an INI file, the return type can be either.
+Returns the value corresponding to the key. Since it is possible to define strings as well as arrays in an INI file, the return type can be either. If the key is not defined or the INI file is broken or non existing, an exception is thrown.
 
 ## Example
 *configuration/config.ini*
