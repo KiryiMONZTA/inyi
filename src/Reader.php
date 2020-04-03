@@ -1,0 +1,64 @@
+<?php
+
+namespace Kiryi\Inyi;
+
+use \Kiryi\Pathyi\Formatter as Pathyi;
+
+class Reader extends \Exception
+{
+    const ERRORMSG_FILEDOESNOTEXIST = 'INI READER ERROR: File "%s" does not exist!';
+    const ERRORMSG_FILEISBROKEN = 'INI READER ERROR: File "%s" is broken!';
+    const ERRORMSG_VALUENOTFOUND = 'INI READER ERROR: Value "%s" is not set in file "%s"!';
+    
+    const ROOTDIR = __DIR__ . '/../../../';
+    
+    private string $filepath = '';
+    private array $ini = [];
+    
+    public function __construct(string $filepath)
+    {
+        $this->filepath = $this::ROOTDIR . (new Pathyi())->format($filepath);
+
+        $this->ini = $this->loadIni();
+    }
+    
+    public function get(string $key)
+    {
+        $key = trim($key);
+        
+        if (null !== $value = $this->getValue($key)) {
+            return $value;
+        } else {
+            throw new \Exception(sprintf($this::ERRORMSG_VALUENOTFOUND, $key, $this->filepath));
+        }
+    }
+    
+    private function loadIni(): array
+    {
+        if (file_exists($this->filepath)) {
+            if ($ini = parse_ini_file($this->filepath, true)) {
+                return $ini;
+            } else {
+                throw new \Exception(sprintf($this::ERRORMSG_FILEISBROKEN, $this->filepath));
+            }
+        } else {
+            throw new \Exception(sprintf($this::ERRORMSG_FILEDOESNOTEXIST, $this->filepath));
+        }
+    }
+    
+    private function getValue(string $key)
+    {
+        $keyLevels = explode('::', $key);
+        $value = $this->ini;
+        
+        for ($i = 0; $i != count($keyLevels); $i++) {
+            if (isset($value[$keyLevels[$i]])) {
+                $value = $value[$keyLevels[$i]];
+            } else {
+                return null;
+            }
+        }
+        
+        return $value;
+    }
+}
