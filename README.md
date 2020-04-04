@@ -12,7 +12,7 @@ $inyi = new \Kiryi\Inyi\Reader($filepath);
 $value = $inyi->get($key);
 ```
 
-## Method Definition
+## Constructor Definition
 ```php
 __construct(string $filepath)
 ```
@@ -20,6 +20,7 @@ __construct(string $filepath)
 **filepath**  
 The filepath to your INI file. It is relative to your project's root directory.
 
+## Method Definition *get*
 ```php
 get(string $key)
 ```
@@ -39,8 +40,7 @@ password = qwe123
 ```
 *src/Config.php*
 ```php
-$inyi = new \Kiryi\Inyi\Reader('configuration/config.ini');
-$value = $inyi->get('database::user');
+(new \Kiryi\Inyi\Reader('configuration/config.ini'))->get('database::user');
 ```
 *returns*
 ```
