@@ -6,9 +6,9 @@ use \Kiryi\Pathyi\Formatter as Pathyi;
 
 class Reader extends \Exception
 {
-    const ERRORMSG_FILEDOESNOTEXIST = 'INI READER ERROR: File "%s" does not exist!';
-    const ERRORMSG_FILEISBROKEN = 'INI READER ERROR: File "%s" is broken!';
-    const ERRORMSG_KEYNOTFOUND = 'INI READER ERROR: Key "%s" is not set in file "%s"!';
+    const ERRORMSG_FILEDOESNOTEXIST = 'INYI FILE ERROR: File "%s" does not exist!';
+    const ERRORMSG_FILEISBROKEN = 'INYI FILE ERROR: File "%s" is broken!';
+    const ERRORMSG_KEYNOTFOUND = 'INYI KEY ERROR: Key "%s" is not set in file "%s"!';
     
     const ROOTDIR = __DIR__ . '/../../../../';
     
