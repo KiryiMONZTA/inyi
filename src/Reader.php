@@ -35,8 +35,8 @@ class Reader extends \Exception
     
     private function loadIni(): array
     {
-        if (file_exists($this->filepath)) {
-            if ($ini = parse_ini_file($this->filepath, true)) {
+        if (file_exists($this->filepath) === true) {
+            if (false !== $ini = parse_ini_file($this->filepath, true)) {
                 return $ini;
             } else {
                 throw new \Exception(sprintf($this::ERRORMSG_FILEISBROKEN, $this->filepath));
@@ -52,7 +52,7 @@ class Reader extends \Exception
         $value = $this->ini;
         
         for ($i = 0; $i != count($keyLevels); $i++) {
-            if (isset($value[$keyLevels[$i]])) {
+            if (isset($value[$keyLevels[$i]]) === true) {
                 $value = $value[$keyLevels[$i]];
             } else {
                 return null;
